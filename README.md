@@ -12,100 +12,116 @@ pinned: false
 
 # 📋 CompliBot MVP
 
-A compliance-focused AI assistant for SOP, CAPA, deviation, and regulated quality document workflows.
+A compliance-focused document assistant for SOP, CAPA, deviation, training, and regulated quality workflows.
 
-CompliBot MVP is built to support evidence-backed question answering over compliance documents, helping users interpret procedures, requirements, and process expectations more efficiently.
+CompliBot demonstrates grounded question answering over uploaded compliance documents, with structured outputs designed for review-oriented workflows.
 
----
+## What it demonstrates
 
-## Problem
+- Compliance-focused RAG-style retrieval
+- SOP/CAPA/deviation question classification
+- PDF parsing with PyPDF
+- Chunking and document-group metadata
+- Sentence Transformer embeddings
+- ChromaDB vector storage
+- Evidence-backed answer synthesis
+- Streamlit workflow interface
 
-Compliance and quality documents are critical in regulated environments, but they are often difficult to navigate quickly during operational or review workflows.
+## Why it matters
 
-Typical pain points include:
+Quality and compliance documents are often operationally important but hard to navigate quickly. CompliBot shows how a grounded AI assistant can help users locate evidence, identify procedural guidance, and review compliance-related requirements.
 
-- Manually searching long SOPs and quality documents
-- Difficulty locating approval requirements
-- Slow interpretation of procedural steps
-- Limited access to fast, grounded document support
+## Features
 
----
+- Upload SOP, CAPA, deviation, training, and quality PDFs
+- Ingest uploaded documents into a vector store
+- Ask compliance-focused questions
+- Retrieve supporting document evidence
+- Generate structured answer sections
+- Show question type, evidence, source, and compliance note
 
-## Solution
-
-CompliBot MVP allows users to upload compliance-related PDFs, index them, and ask grounded questions over the document set.
-
-The system supports:
-
-- SOP-focused question answering
-- Compliance-oriented requirement extraction
-- Evidence-backed guidance for review workflows
-
----
-
-## Key Features
-
-- Upload SOP, CAPA, deviation, and quality PDFs
-- Ingest and index compliance documents
-- Ask grounded compliance questions
-- Retrieve relevant supporting evidence
-- Generate structured compliance-oriented answers
-- Support document review workflows
-
----
-
-## Technology Stack
+## Tech stack
 
 - Python
 - Streamlit
 - PyPDF
 - ChromaDB
 - Sentence Transformers
+- NumPy
+- Pandas
 
----
-
-## How It Works
-
-1. Upload compliance or SOP-related PDFs  
-2. Ingest and index document content  
-3. Ask a compliance-focused question  
-4. Retrieve relevant evidence  
-5. Return a structured, grounded response  
-
----
-
-## Project Structure
+## Project structure
 
 ```text
 complibot-mvp/
 ├── app.py
+├── compli_pipeline.py
 ├── requirements.txt
-├── README.md
-└── ...
+├── .env.example
+├── .gitignore
+├── DEPLOYMENT_CHECKLIST.md
+└── README.md
 ```
----
 
-## Why This Project Matters
+## Run locally
 
-This project demonstrates:
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+streamlit run app.py
+```
 
-- AI support for regulated compliance workflows
-- evidence-backed document assistance
-- retrieval-based procedural guidance
-- domain-aware application design for quality operations
+On Windows PowerShell:
 
-## Important Note
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+streamlit run app.py
+```
 
-This project is a prototype/demo build created to reflect regulated-environment design patterns. It is not a validated compliance decision system.
+## Environment variables
 
----
+The default demo does not require API keys. Embeddings run locally through Sentence Transformers.
 
-## 🔗 Links & Attribution
+Use `.env.example` as a safe template only. Do not commit a real `.env` file.
 
-### 🌐 Live Demo
-[![Live Demo](https://img.shields.io/badge/Demo-HuggingFace-FFD21E?style=for-the-badge&logo=huggingface&logoColor=black)](https://huggingface.co/spaces/Chaitanya-Sanagana/complibot-mvp)
+## Deployment notes
 
-### 👤 Author
-**Chaitanya Sanagana**
-[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Chaitanya-Sanagana)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/chaitanya-sai-sanagana-8a1827263)
+This project is compatible with Hugging Face Spaces using the Streamlit SDK metadata at the top of this README.
+
+Suggested Space name:
+
+```text
+complibot-mvp
+```
+
+## Limitations
+
+- This MVP is a prototype and is not a validated GxP, Part 11, or production quality-management system.
+- Outputs must be reviewed against approved internal procedures.
+- PDF extraction quality depends on the source document.
+- Scanned PDFs may require OCR, which is not included.
+
+## Roadmap
+
+- Add richer document metadata and versioning
+- Add reviewer approval queue
+- Add auditable export of answer/evidence pairs
+- Add optional LLM synthesis with strict citations
+- Add retrieval evaluation dashboard
+
+## Author
+
+**Chaitanya S.**  
+Applied AI Engineer | Generative AI · RAG · Agentic AI · AI Platform Engineering
+
+- GitHub: `github.com/ChaitanyaAI-Dev/complibot-mvp`
+- LinkedIn: `linkedin.com/in/chaitanyaai-dev`
+- Hugging Face: `huggingface.co/ChaitanyaAI-Dev`
+- Portfolio: `chaitanyaai-dev-portfolio.vercel.app`
+
+## Disclaimer
+
+This is a prototype/demo project for AI engineering portfolio purposes. It is not medical, legal, regulatory, or compliance advice.

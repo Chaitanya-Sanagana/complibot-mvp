@@ -43,6 +43,14 @@ CASUAL_CHAT_PATTERNS = [
 ]
 
 
+
+def sanitize_filename(filename: str) -> str:
+    """Return a safe filename for local demo storage."""
+    basename = os.path.basename(filename or "uploaded_file.pdf")
+    cleaned = re.sub(r"[^A-Za-z0-9._ -]", "_", basename).strip()
+    return cleaned or "uploaded_file.pdf"
+
+
 class CompliBotPipeline:
     def __init__(self):
         self.client = chromadb.PersistentClient(path=CHROMA_DIR)
@@ -251,7 +259,8 @@ class CompliBotPipeline:
         saved_paths = []
 
         for uploaded_file in uploaded_files:
-            temp_path = os.path.join("temp_uploads", uploaded_file.name)
+            safe_name = sanitize_filename(uploaded_file.name)
+            temp_path = os.path.join("temp_uploads", safe_name)
             with open(temp_path, "wb") as f:
                 f.write(uploaded_file.getbuffer())
             saved_paths.append(temp_path)
